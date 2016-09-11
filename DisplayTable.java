@@ -39,7 +39,18 @@ public class DisplayTable extends JFrame{
 		SpringLayout aGodLayout = new SpringLayout();
 		JLabel[] result = new JLabel[size];
 		String[] goodbye = new String[size]; 
-		JButton submit = new JButton("Submit");
+				JButton submit = new JButton();
+		File image = new File("index.png");
+		try{
+			Image submitimage = ImageIO.read(image);
+			submit.setIcon(new ImageIcon(submitimage));
+			submit.setBorder(null);
+			submit.setContentAreaFilled(false);
+			submit.setOpaque(false);
+			submit.setFocusPainted(false);
+		}catch(IOException ex){
+			System.out.println("File not exists");
+		}
 		submit.setBounds(1000, 600, 140, 50);
 		approval approve = new approval();
 		submit.addActionListener(approve);
