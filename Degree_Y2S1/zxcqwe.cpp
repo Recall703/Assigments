@@ -1,11 +1,18 @@
+/*
+ * SortAlgo.h
+ *
+ *  Created on: Sep 19, 2016
+ *      Author: recall
+ */
+
+#ifndef SORTALGO_H_
+#define SORTALGO_H_
 #include <iostream>
 using namespace std;
-
-int SIZE = 5;
+int SIZE = 10;
 template <typename DataType>
 
-
-class SortingAlgo{
+class SortAlgo {
 
 	void swap(DataType &x, DataType &y){
 		DataType temp = 0;
@@ -40,33 +47,30 @@ class SortingAlgo{
 
 		int indexForNew = first;
 
-		while(leftFirst <= leftLast && rightFirst <= rightLast){
+		for(indexForNew=first;(leftFirst <= leftLast && rightFirst <= rightLast); indexForNew++){
 			if(array[leftFirst] < array[rightFirst]){
 				newArray[indexForNew] = array[leftFirst];
-				leftFirst++;
+				++leftFirst;
 			}
 			else{
 				newArray[indexForNew] = array[rightFirst];
-				rightFirst++;
+				++rightFirst;
 			}
-
-			indexForNew++;
-
-		};
+		}
 
 		while(leftFirst <= leftLast){
 			newArray[indexForNew] = array[leftFirst];
-			leftFirst++;
-			indexForNew++;
+			++leftFirst;
+			++indexForNew;
 		}
 
 		while(rightFirst <= rightLast){
 			newArray[indexForNew] = array[rightFirst];
 			rightFirst++;
 			indexForNew++;
-		};
+		}
 
-		for(int i =0; i < last ; i++){
+		for(int i = 0 ; i < last +1 ; i++){
 			array[i] = newArray[i];
 		}
 
@@ -143,6 +147,11 @@ class SortingAlgo{
 
 	}
 
+	void displayArray( const DataType theArray[], int first, int last ){
+	   for ( int i = first; i <= last; ++i )
+	      cout << theArray[ i ] << " ";
+	}
+
 	void MergeSort(DataType array[],int firstIndex, int lastIndex){
 
 		if(firstIndex < lastIndex){
@@ -161,14 +170,4 @@ class SortingAlgo{
 
 };
 
-int main(){
-	int array[] = {5,1,2,6,9,8};
-	SortingAlgo <int> a;
-	a.MergeSort(array, 0, 5);
-	//int size = array.size();
-	for(int i =0; i < 6; i++){
-		cout << array[i] << " ";
-	}
-
-	return 0;
-}
+#endif /* SORTALGO_H_ */
